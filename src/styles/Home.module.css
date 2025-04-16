@@ -1,17 +1,115 @@
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f3f4f6;
+  max-width: 400px;
+  margin: 30px auto;
   padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
 }
 
-.card {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+.title {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.input-wrap {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.input-wrap input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.input-wrap button {
+  background: #007bff;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tab-wrap {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.tab {
+  padding: 6px 12px;
+  background: #eee;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: #007bff;
+  color: white;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.todo-item input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.todo-item span {
+  flex: 1;
+}
+
+.todo-item .checked {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.delete-btn {
+  background: none;
+  color: red;
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.clear-btn {
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.no-task {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+.footer-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  margin-top: 10px;
 }

@@ -12,6 +12,13 @@
 
 html,
 body {
+  font-family: sans-serif;
+  background: #f3f4f6;
+  margin: 0;
+  padding: 0;
+}
+
+body {
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -39,4 +46,20 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+footer {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+  color: #666;
+}
+
+footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
