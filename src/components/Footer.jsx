@@ -1,6 +1,12 @@
 export default function Footer() {
   return (
-    <div style={{ textAlign: "center", fontSize: "0.8rem", color: "#666" }}>
+    <div
+      style={{
+        textAlign: "center",
+        fontSize: "0.8rem",
+        color: "#666",
+      }}
+    >
       Powered by{" "}
       <a
         href="https://gogo.mn"

@@ -1,4 +1,8 @@
 export default function TodoInput() {
+  const add = () => {
+    console.log("clicked");
+  };
+
   return (
     <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
       <input
@@ -12,6 +16,7 @@ export default function TodoInput() {
         }}
       />
       <button
+        onClick={add}
         style={{
           padding: "10px 20px",
           backgroundColor: "#3B82F6",
@@ -26,3 +31,5 @@ export default function TodoInput() {
     </div>
   );
 }
+
+//input tabs 2-ийг нэгтгэх.
