@@ -1,17 +1,37 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import TaskAdd from "@/components/TaskAdd";
 import Task from "@/components/Task";
 
-let nextId = 1;
-
 export default function Home() {
   const [tasks, setTasks] = useState([]);
+  const [selectedTab, setSelectedTab] = useState("All");
+
   const addTask = (text) => {
-    setTasks([...tasks, { id: nextId++, text }]);
+    setTasks([...tasks, { id: uuidv4(), text, isDone: false }]);
   };
+
   const handleCheckbox = (id) => {
-    console.log("checkbox clicked, ID:", id);
+    const updated = tasks.map((task) =>
+      task.id === id ? { ...task, isDone: !task.isDone } : task
+    );
+    setTasks(updated);
   };
+
+  const clearCompleted = () => {
+    const activeTasks = tasks.filter((task) => !task.isDone);
+    setTasks(activeTasks);
+  };
+
+  const completedCount = tasks.filter((task) => task.isDone).length;
+  const totalCount = tasks.length;
+
+  const filteredTasks = tasks.filter((task) => {
+    if (selectedTab === "All") return true;
+    if (selectedTab === "Active") return !task.isDone;
+    if (selectedTab === "Completed") return task.isDone;
+  });
+
   return (
     <div
       style={{
@@ -23,16 +43,7 @@ export default function Home() {
         boxShadow: "0 0 10px #ccc",
       }}
     >
-      <h1
-        style={{
-          textAlign: "center",
-          fontWeight: "bold",
-          fontSize: 24,
-          marginBottom: 20,
-        }}
-      >
-        To-Do List
-      </h1>
+      <h1 style={{ textAlign: "center" }}>To-Do List</h1>
 
       <TaskAdd onAdd={addTask} />
 
@@ -47,13 +58,13 @@ export default function Home() {
         {["All", "Active", "Completed"].map((tab) => (
           <button
             key={tab}
-            onClick={() => {}}
+            onClick={() => setSelectedTab(tab)}
             style={{
               padding: "6px 12px",
               border: "none",
               borderRadius: 5,
-              backgroundColor: tab === "All" ? "#007BFF" : "#eee",
-              color: tab === "All" ? "white" : "black",
+              backgroundColor: selectedTab === tab ? "#007BFF" : "#eee",
+              color: selectedTab === tab ? "white" : "black",
               cursor: "pointer",
               opacity: 0.9,
             }}
@@ -63,49 +74,49 @@ export default function Home() {
         ))}
       </div>
 
-      {tasks.length === 0 ? (
-        <p
-          style={{
-            textAlign: "center",
-            color: "#888",
-            fontStyle: "italic",
-          }}
-        >
-          No tasks yet. Add one above!
-        </p>
-      ) : (
-        tasks.map((task) => (
-          <Task
-            key={task.id}
-            text={task.text}
-            id={task.id}
-            onCheckbox={handleCheckbox}
-          />
-        ))
-      )}
+      {filteredTasks.map((task) => (
+        <Task
+          key={task.id}
+          id={task.id}
+          text={task.text}
+          isDone={task.isDone}
+          onCheckbox={handleCheckbox}
+        />
+      ))}
 
-      <p
+      <div
         style={{
-          textAlign: "center",
-          marginTop: 20,
-          color: "#666",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginTop: 16,
           fontSize: 14,
         }}
       >
+        <span>{`${completedCount} of ${totalCount} tasks completed`}</span>
+
+        {completedCount > 0 && (
+          <button
+            onClick={clearCompleted}
+            style={{
+              border: "none",
+              background: "transparent",
+              color: "red",
+              fontWeight: "bold",
+              cursor: "pointer",
+            }}
+          >
+            Clear Completed
+          </button>
+        )}
+      </div>
+
+      <p style={{ textAlign: "center", fontSize: 13, marginTop: 20 }}>
         Powered by{" "}
-        <a
-          href="https://ikon.mn"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: "#007BFF", textDecoration: "none" }}
-        >
+        <a href="https://pinecone.mn" target="_blank" rel="noopener noreferrer">
           Pinecone academy
         </a>
       </p>
     </div>
   );
 }
-
-//checkbox дээр дарахад console.log-дог байх. ID-аар логддог байх.
-
-//uuid

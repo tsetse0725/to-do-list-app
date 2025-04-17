@@ -1,4 +1,4 @@
-export default function Task({ id, text, onCheckbox }) {
+export default function Task({ id, text, isDone, onCheckbox }) {
   return (
     <div
       style={{
@@ -14,10 +14,15 @@ export default function Task({ id, text, onCheckbox }) {
     >
       <input
         type="checkbox"
+        checked={isDone}
         style={{ marginRight: 8 }}
         onChange={() => onCheckbox(id)}
       />
-      <span style={{ flex: 1 }}>{text}</span>
+      <span
+        style={{ flex: 1, textDecoration: isDone ? "line-through" : "none" }}
+      >
+        {text}
+      </span>
       <button
         onClick={() => {}}
         style={{
