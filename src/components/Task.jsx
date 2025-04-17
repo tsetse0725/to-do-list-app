@@ -1,4 +1,4 @@
-export default function Task({ text }) {
+export default function Task({ id, text, onCheckbox }) {
   return (
     <div
       style={{
@@ -12,7 +12,11 @@ export default function Task({ text }) {
         opacity: 0.9,
       }}
     >
-      <input type="checkbox" style={{ marginRight: 8 }} onChange={() => {}} />
+      <input
+        type="checkbox"
+        style={{ marginRight: 8 }}
+        onChange={() => onCheckbox(id)}
+      />
       <span style={{ flex: 1 }}>{text}</span>
       <button
         onClick={() => {}}

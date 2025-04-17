@@ -5,10 +5,13 @@ export default function TaskAdd({ onAdd }) {
   const [text, setText] = useState("");
 
   const handleAdd = () => {
+    if (text === "") {
+      alert("Please  enter a task");
+      return;
+    }
     onAdd(text);
     setText("");
   };
-
   return (
     <div style={{ display: "flex", gap: 10, marginBottom: 15 }}>
       <input

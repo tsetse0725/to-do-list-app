@@ -6,11 +6,12 @@ let nextId = 1;
 
 export default function Home() {
   const [tasks, setTasks] = useState([]);
-
   const addTask = (text) => {
     setTasks([...tasks, { id: nextId++, text }]);
   };
-
+  const handleCheckbox = (id) => {
+    console.log("checkbox clicked, ID:", id);
+  };
   return (
     <div
       style={{
@@ -73,7 +74,14 @@ export default function Home() {
           No tasks yet. Add one above!
         </p>
       ) : (
-        tasks.map((task) => <Task key={task.id} text={task.text} />)
+        tasks.map((task) => (
+          <Task
+            key={task.id}
+            text={task.text}
+            id={task.id}
+            onCheckbox={handleCheckbox}
+          />
+        ))
       )}
 
       <p
@@ -97,3 +105,7 @@ export default function Home() {
     </div>
   );
 }
+
+//checkbox дээр дарахад console.log-дог байх. ID-аар логддог байх.
+
+//uuid
