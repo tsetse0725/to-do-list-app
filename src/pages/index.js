@@ -18,6 +18,11 @@ export default function Home() {
     setTasks(updated);
   };
 
+  const deleteTask = (id) => {
+    const updated = tasks.filter((task) => task.id !== id);
+    setTasks(updated);
+  };
+
   const clearCompleted = () => {
     const activeTasks = tasks.filter((task) => !task.isDone);
     setTasks(activeTasks);
@@ -81,6 +86,7 @@ export default function Home() {
           text={task.text}
           isDone={task.isDone}
           onCheckbox={handleCheckbox}
+          onDelete={deleteTask}
         />
       ))}
 
@@ -113,7 +119,12 @@ export default function Home() {
 
       <p style={{ textAlign: "center", fontSize: 13, marginTop: 20 }}>
         Powered by{" "}
-        <a href="https://pinecone.mn" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://ikon.mn"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "#3B73ED" }}
+        >
           Pinecone academy
         </a>
       </p>

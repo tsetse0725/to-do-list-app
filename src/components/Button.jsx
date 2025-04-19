@@ -6,8 +6,8 @@ export default function Button({ label, onClick }) {
         backgroundColor: "#007BFF",
         color: "white",
         border: "none",
+        borderRadius: 5,
         padding: "8px 14px",
-        borderRadius: 6,
         cursor: "pointer",
       }}
     >

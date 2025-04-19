@@ -1,40 +1,45 @@
-export default function Task({ id, text, isDone, onCheckbox }) {
+export default function Task({ id, text, isDone, onCheckbox, onDelete }) {
   return (
     <div
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        background: "#f8f9fa",
-        padding: "8px 12px",
+        padding: 10,
+        border: "1px solid #ccc",
         borderRadius: 6,
-        marginBottom: 8,
-        opacity: 0.9,
+        marginBottom: 10,
+        backgroundColor: isDone ? "#f0fdf4" : "#fff",
       }}
     >
-      <input
-        type="checkbox"
-        checked={isDone}
-        style={{ marginRight: 8 }}
-        onChange={() => onCheckbox(id)}
-      />
-      <span
-        style={{ flex: 1, textDecoration: isDone ? "line-through" : "none" }}
-      >
-        {text}
-      </span>
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <input
+          type="checkbox"
+          checked={isDone}
+          onChange={() => onCheckbox(id)}
+        />
+        <span
+          style={{
+            textDecoration: isDone ? "line-through" : "none",
+            flex: 1,
+          }}
+        >
+          {text}
+        </span>
+      </div>
+
       <button
-        onClick={() => {}}
+        onClick={() => onDelete(id)}
         style={{
-          background: "#ffecec",
-          color: "red",
-          border: "1px solid red",
-          borderRadius: 5,
-          padding: "4px 8px",
+          backgroundColor: "#ef4444",
+          border: "none",
+          padding: "6px 10px",
+          borderRadius: "5px",
+          color: "white",
           cursor: "pointer",
         }}
       >
-        Delete
+        🗑️ Delete
       </button>
     </div>
   );
