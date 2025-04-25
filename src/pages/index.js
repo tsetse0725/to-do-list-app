@@ -81,16 +81,22 @@ export default function Home() {
         ))}
       </div>
 
-      {filteredTasks.map((task) => (
-        <Task
-          key={task.id}
-          id={task.id}
-          text={task.text}
-          isDone={task.isDone}
-          onCheckbox={handleCheckbox}
-          onDelete={deleteTask}
-        />
-      ))}
+      {filteredTasks.length === 0 ? (
+        <p style={{ textAlign: "center", color: "#888", marginTop: 20 }}>
+          No task yet.
+        </p>
+      ) : (
+        filteredTasks.map((task) => (
+          <Task
+            key={task.id}
+            id={task.id}
+            text={task.text}
+            isDone={task.isDone}
+            onCheckbox={handleCheckbox}
+            onDelete={deleteTask}
+          />
+        ))
+      )}
 
       <div
         style={{
