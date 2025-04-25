@@ -19,11 +19,13 @@ export default function Home() {
   };
 
   const deleteTask = (id) => {
+    confirm("Are you sure you want delete this task?");
     const updated = tasks.filter((task) => task.id !== id);
     setTasks(updated);
   };
 
   const clearCompleted = () => {
+    confirm("Are you sure you want delte all completed tasks?");
     const activeTasks = tasks.filter((task) => !task.isDone);
     setTasks(activeTasks);
   };
